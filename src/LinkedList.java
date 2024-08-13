@@ -89,5 +89,98 @@ public Node removeLast(){
         }
 }//END OF REMOVELAST
 
+    public void prepend(int value){
+        Node newNode = new Node(value);
+
+        if (length == 0){
+            //if list empty, set head/tail to new Node
+            head = newNode;
+            tail = newNode;
+        } else {
+           newNode.next = head; //new node placed in front of head Node
+           head = newNode; //head pointer changed to new front of list
+        }
+        length++; //incriment at end
+    }
+
+    public Node removeFirst(){
+        //if list starts empty
+        if (length == 0){
+            return null;
+        }
+        Node temp = head; //set temp to head to return removed Node
+        head = head.next; //move head to new front of list
+        temp.next = null; //removes old front from list
+        length--; //decrement length
+        if (length == 0){
+            //if list ends up empty, must set tail to null
+            tail = null;
+        }
+        return temp;
+    }
+
+    public Node get(int index){
+        if (index < 0 || index >= length){
+            return null;
+        }
+        //create Node to traverse
+        Node temp = head;
+        //traverse until i reaches index
+        for (int i = 0; i < index; i++){
+            //every loop, temp moves forward in list until index reached
+            temp = temp.next;
+        }
+        //return after index reached
+        return temp;
+    }
+
+    public boolean set(int index, int value){
+        Node temp = get(index); //get index using get method
+
+        //if index exists, change value at index to value
+        if (temp != null){
+            temp.value = value;
+            return true;
+        }
+
+        //if index doesnt exist, return false
+        return false;
+    }
+
+    public boolean insert(int index, int value){
+        Node newNode = new Node(value);
+        Node pre = head;
+        Node temp = head;
+        Node udemyTemp = get(index - 1);
+
+        if (index < 0 || index > length){
+            return false;
+        }
+        if (index == 0){
+            prepend(value);
+            return true;
+        }
+        if (index == length){
+            append(value);
+            return true;
+        }
+
+        //MY SOLUTION
+//        for (int i = 0; i < index; i++){
+//            pre = temp;
+//            temp = temp.next;
+//        }
+//        pre.next = newNode;
+//        newNode.next = temp;
+//        length++;
+//        return true;
+
+        //Udemy Solution
+        newNode.next = udemyTemp.next;
+        udemyTemp.next = newNode;
+        length++;
+        return true;
+    }
+
 
 }
