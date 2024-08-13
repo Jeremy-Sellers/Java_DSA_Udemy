@@ -4,11 +4,10 @@ public class main {
 
         myLL.append(5);
 
-        myLL.getHead();
-        myLL.getTail();
-        myLL.getLength();
+        System.out.println(myLL.removeLast().value);
+        System.out.println(myLL.removeLast().value);
+        System.out.println(myLL.removeLast());
 
-        myLL.printList();
 
     }
 }

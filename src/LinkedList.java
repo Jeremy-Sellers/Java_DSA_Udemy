@@ -57,5 +57,37 @@ public class LinkedList {
         length++; //incriment length at end
     }
 
+public Node removeLast(){
+        Node pre = head;
+        Node temp = head;
+
+        if(length == 0){
+            //if list begins empty
+            return null;
+        }
+        else {
+            while (temp.next != null){
+                //while temp is not at end of list, pre will move to temp location
+                //temp then moves on to next node and the check is made again
+                pre = temp;
+                temp = temp.next;
+            }
+            //once temp.next is null, end of list reached, pre is one step behind last Node
+            //set tail to pre, moving it off last node thats being removed
+            //tail.next = null removes last node, only temp is pointing to it now
+            //decrement length of list
+            tail = pre;
+            tail.next = null;
+            length--;
+            //if list was at only one node left and remove called, must set head/tail to null
+            if (length == 0){
+                head = null;
+                tail = null;
+            }
+            //return the removed Node
+            return temp;
+        }
+}//END OF REMOVELAST
+
 
 }
