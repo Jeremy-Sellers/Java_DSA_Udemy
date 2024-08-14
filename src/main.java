@@ -3,17 +3,21 @@
 public class main {
     public static void main(String[] args) {
 
-        Stack stack = new Stack(2);
+        Queue newQueue = new Queue(5);
 
-        stack.printStack();
+        newQueue.enqueue(6);
+        newQueue.enqueue(7);
+
+        newQueue.printQueue();
+
         System.out.println('\n');
 
-        stack.push(3);
-        stack.push(4);
-        stack.printStack();
-
-        stack.pop();
+        newQueue.dequeue();
+        newQueue.printQueue();
         System.out.println('\n');
-        stack.printStack();
+
+        newQueue.enqueue(8);
+        newQueue.printQueue();
+
     }
 }
