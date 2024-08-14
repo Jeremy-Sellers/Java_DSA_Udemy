@@ -182,5 +182,43 @@ public Node removeLast(){
         return true;
     }
 
+    public Node remove(int index){
+        Node pre = get(index-1);
+        Node temp = pre.next;
+
+        if (index < 0 || index >= length){
+            return null;
+        }
+        if (index == 0){
+            return removeFirst();
+        }
+        if (index == length - 1){
+            return removeLast();
+        }
+
+        pre.next = temp.next;
+        temp.next = null;
+        length--;
+        return temp;
+    }
+
+    public void reverse() {
+        Node temp = head; //set to front of list
+        head = tail; //set head to back of list
+        tail = temp; //set tail to front of list
+        Node after = temp.next;
+        Node before = null;
+
+        for (int i = 0; i < length; i++){
+            after = temp.next;//after moves forward in list
+            temp.next = before; //temp in middle, turns around
+            //gap created between nodes
+            before = temp; //before and tempt point at same node
+            //before holds disconnected node
+            temp = after;//temp and after point at same node
+            //temp jumps gap to afters node, prepares to turn around
+        }
+    }
+
 
 }
