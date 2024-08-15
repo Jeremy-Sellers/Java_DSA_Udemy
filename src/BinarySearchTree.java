@@ -47,9 +47,29 @@ public class BinarySearchTree {
                 //if right spot not open, move temp down tree and restart loop for checking
                 temp = temp.right;
             }
-
         }
+    }
 
+    public boolean contains(int value){
+        Node temp = root;
+
+        //while temp has not reached null value
+        while (temp != null){
+            //if searched value is less than temp, move temp down to next lower value
+            if (value < temp.value){
+                temp = temp.left;
+            }
+            //if searched value is greater than temp, move temp to next greater value
+            else if (value > temp.value){
+                temp = temp.right;
+            }
+            //if value == temp found, return true
+            else {
+                return true;
+            }
+        }
+        //if temp reaches null on search for value, return false
+        return false;
     }
 
 
