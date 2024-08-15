@@ -2,22 +2,18 @@
 
 public class main {
     public static void main(String[] args) {
+        BinarySearchTree myBST = new BinarySearchTree();
 
-        Queue newQueue = new Queue(5);
+        System.out.println("myBST Value: " + myBST.root);
 
-        newQueue.enqueue(6);
-        newQueue.enqueue(7);
+        myBST.insert(47);
+        myBST.insert(21);
+        myBST.insert(76);
+        myBST.insert(18);
+        myBST.insert(52);
+        myBST.insert(82);
+        myBST.insert(27);
 
-        newQueue.printQueue();
-
-        System.out.println('\n');
-
-        newQueue.dequeue();
-        newQueue.printQueue();
-        System.out.println('\n');
-
-        newQueue.enqueue(8);
-        newQueue.printQueue();
-
+        System.out.println(myBST.root.left.right.value);
     }
 }
