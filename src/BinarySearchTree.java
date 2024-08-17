@@ -93,5 +93,75 @@ public class BinarySearchTree {
         return recursiveContains(root, value);
     }
 
+    private Node recursiveInsert(Node currentNode, int value){
 
+        if (currentNode == null){
+            return new Node(value);
+        }
+
+        //everytime loop runs, currentNode becomes either the left or right child based on direction needed to move from the previous call
+
+        //if value less than current, rerun insert against lower left child
+        if (value < currentNode.value){
+            currentNode.left = recursiveInsert(currentNode.left, value);
+        }
+        //if value is greater than current, rerun insert against lower right child
+        else if (value > currentNode.value){
+            currentNode.right = recursiveInsert(currentNode.right, value);
+        }
+
+        return currentNode;
+    }
+
+    public void recursiveInsert(int value){
+        if (root == null) { root = new Node(value);}
+        recursiveInsert(root, value);
+    }
+
+    //helped method for recursiveDeleteNode
+    public int minValue(Node currentNode){
+        while (currentNode.left != null){
+            currentNode = currentNode.left;
+        }
+        return currentNode.value;
+    }
+
+
+
+    private Node recursiveDeleteNode(Node currentNode, int value){
+       //if value not found through traversal, returns null
+        if (currentNode == null){
+            return null;
+        }
+
+        //traverses left/right looking for value in tree
+        if (value < currentNode.value){
+            currentNode.left = recursiveDeleteNode(currentNode.left, value);
+        } else if (value > currentNode.value){
+            currentNode.right = recursiveDeleteNode(currentNode.right, value);
+        }
+        //if value found, runs below code
+        else {
+            //if node to be deleted has no children/ only right child/ or only left child
+            if (currentNode.left == null && currentNode.right == null){
+                return null;
+            } else if(currentNode.left == null) {
+                currentNode = currentNode.right;
+            } else if (currentNode.right == null){
+                currentNode = currentNode.left;
+            }
+            //if node has left & right children
+            else {
+                int subTreeMin = minValue(currentNode.right);
+                currentNode.value = subTreeMin;
+                currentNode.right = recursiveDeleteNode(currentNode.right, subTreeMin);
+            }
+        }
+
+        return currentNode;
+    }
+
+    public void recursiveDeleteNode(int value){
+        recursiveDeleteNode(root, value);
+    }
 }
