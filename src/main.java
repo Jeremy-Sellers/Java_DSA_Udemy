@@ -2,20 +2,24 @@
 
 public class main {
     public static void main(String[] args) {
-      Graph myGraph = new Graph();
+        Heap myHeap = new Heap();
+        myHeap.insert(95);
+        myHeap.insert(75);
+        myHeap.insert(80);
+        myHeap.insert(55);
+        myHeap.insert(60);
+        myHeap.insert(50);
+        myHeap.insert(65);
 
-      myGraph.addVertex("A");
-      myGraph.addVertex("B");
-      myGraph.addVertex("C");
+        System.out.println(myHeap.getHeap());
 
-      myGraph.addEdge("A","B");
-      myGraph.addEdge("A","C");
-      myGraph.addEdge("B","C");
+        myHeap.remove();
 
-      myGraph.removeEdge("A","B");
-        System.out.println('\n');
+        System.out.println(myHeap.getHeap());
 
-      myGraph.printGraph();
+        myHeap.remove();
+
+        System.out.println(myHeap.getHeap());
 
     }
 }
