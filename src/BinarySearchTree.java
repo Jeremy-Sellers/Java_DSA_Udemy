@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree {
     Node root;
 
@@ -163,5 +167,36 @@ public class BinarySearchTree {
 
     public void recursiveDeleteNode(int value){
         recursiveDeleteNode(root, value);
+    }
+
+
+
+    public ArrayList<Integer> BreadthFirstSearch(){
+        Node currentNode = root;
+        //built in Queue
+        Queue<Node> queue = new LinkedList<>();
+        ArrayList<Integer> results = new ArrayList<>();
+
+        //adds root to front of queue
+        queue.add(currentNode);
+
+
+        while (queue.size() > 0){
+            //dequeue front of queue and add value to results
+            currentNode = queue.remove();
+            results.add(currentNode.value);
+
+            //check for left/right children
+            if (currentNode.left != null){
+                queue.add(currentNode.left);
+            }
+            if (currentNode.right != null){
+                queue.add(currentNode.right);
+            }
+
+            //restarts at beginning of queue
+        }
+
+        return results;
     }
 }
