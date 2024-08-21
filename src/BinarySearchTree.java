@@ -251,6 +251,31 @@ public class BinarySearchTree {
 
         new Traverse(root);
         return results;
-
     }
+
+    public ArrayList<Integer> DFSInOrder(){
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse{
+
+            Traverse(Node currentNode){
+                //moves down left to bottom, adds to results
+                //moves up to parent and adds to results
+                //THEN moves to right child
+                //continue to check for left child and repeat
+                if (currentNode.left != null){
+                    new Traverse(currentNode.left);
+                }
+                results.add(currentNode.value);
+                if (currentNode.right != null){
+                    new Traverse(currentNode.right);
+                }
+            }//end of traverse method
+        }//end of traverse class
+
+        new Traverse(root);
+        return results;
+    }
+
+
 }
