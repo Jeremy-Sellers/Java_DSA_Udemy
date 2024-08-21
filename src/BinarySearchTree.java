@@ -199,4 +199,30 @@ public class BinarySearchTree {
 
         return results;
     }
+
+    public ArrayList<Integer> DFSPreOrder(){
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse{
+            Traverse(Node currentNode){
+                //adds current node to results
+                //start with root
+                results.add(currentNode.value);
+
+                //if node has left child, traverses to left child and adds to results -> repeat
+                //if no left child, check for right, add to results -> repeat
+                //recursively move up the tree while looking for previously called nodes left/right children
+                if (currentNode.left != null){
+                    new Traverse(currentNode.left);
+                }
+                if (currentNode.right != null){
+                    new Traverse(currentNode.right);
+                }
+            }
+        }
+
+        new Traverse(root);
+        return results;
+    }
+
 }
