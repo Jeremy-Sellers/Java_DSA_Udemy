@@ -225,4 +225,32 @@ public class BinarySearchTree {
         return results;
     }
 
+
+    public ArrayList<Integer> DFSPostOrder(){
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse{
+
+            Traverse(Node currentNode){
+                //if node has left child, traverses to left child
+                //if no left child, check for right,
+                //recursively move up the tree while looking for previously called nodes left/right children
+                if (currentNode.left != null){
+                    new Traverse(currentNode.left);
+                }
+                if (currentNode.right != null){
+                    new Traverse(currentNode.right);
+                }
+
+                //once node is found with no children, add to results
+                //starts at lowest left node
+                results.add(currentNode.value);
+            }//end of traverse method
+
+        }//end of traverse class
+
+        new Traverse(root);
+        return results;
+
+    }
 }
